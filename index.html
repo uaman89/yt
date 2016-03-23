@@ -20,21 +20,39 @@
     <!-- Kendo UI combined JavaScript -->
     <script src="kendoui/js/kendo.all.min.js"></script>
 
-    <script src="js/search.js" type="text/javascript"></script>
-    <script src="https://apis.google.com/js/client.js?onload=onClientLoad" type="text/javascript"></script>
 
 </head>
 <body>
-<div class="k-block k-shadow">
-    <div class="k-header k-shadow">Let find somethig!</div>
-    <span class="k-textbox k-space-right" style="width: 100%;" >
-        <input type="search" id="icon-right"/>
-        <a href="#" class="k-icon k-i-search">&nbsp;</a>
-    </span>
 
-</div>
-<div id="response">
-    responce...
-</div>
+<div id="app"></div>
+
+
+<!--templates-->
+
+<script id="appLayout" type="text/x-kendo-template">
+    <div id="searchPanel"></div>
+    <div id="searchResult"></div>
+    <div id="movieDetails"></div>
+</script>
+
+<script id="searchPanelTpl" type="text/x-kendo-template">
+    <div class="k-block k-shadow">
+        <div  class="k-header k-shadow">Let find somethig!</div>
+        <span class="k-textbox k-space-right" style="width: 100%;" >
+            <input  data-bind="value: query" type="search" />
+            <a  data-bind="click: searchClick" href="#" class="k-icon k-i-search">&nbsp;</a>
+        </span>
+
+    </div>
+</script>
+<!--end templates-->
+
+<!--youtube API-->
+<script src="https://apis.google.com/js/client.js?onload=OnLoadCallback"></script>
+
+<script src="js/main.js" type="text/javascript"></script>
+<script src="js/search.js" type="text/javascript"></script>
+
+
 </body>
 </html>

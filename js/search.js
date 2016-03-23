@@ -1,4 +1,4 @@
-// Your use of the YouTube API must comply with the Terms of Service:
+ // Your use of the YouTube API must comply with the Terms of Service:
 // https://developers.google.com/youtube/terms
 
 // Helper function to display JavaScript value on HTML page.
