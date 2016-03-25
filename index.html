@@ -26,49 +26,67 @@
 </head>
 <body>
 
-<div id="app"></div>
+    <div id="app"> please wait. its loading .. .  .</div>
 
-<!--templates-->
+    <!--templates-->
 
-<script id="appLayout" type="text/x-kendo-template">
-    <div id="searchPanel"></div>
-    <div id="searchResult" class="sidebar k-block"></div>
-    <div id="movieDetails"></div>
-</script>
+    <script id="appLayout" type="text/x-kendo-template">
+        <div id="searchPanel" class="search-panel k-block k-shadow"></div>
+        <div id="searchResult" class="sidebar k-block"></div>
+        <div id="videoDetails" class="video-details k-block k-shadow"></div>
+        <div id="playerWindow"></div>
+    </script>
 
-<script id="searchPanelTpl" type="text/x-kendo-template">
-    <div class="k-block k-shadow">
-        <div  class="k-header k-shadow">Let find somethig!</div>
+    <script id="searchPanelTpl" type="text/x-kendo-template">
+        <div class="k-header k-shadow">Let find somethig!</div>
         <span class="k-textbox k-space-right" style="width: 100%;" >
-            <input data-bind="value: query, events:{ keypress: onSearch }" data-value-update="keypress" type="search" />
-            <a data-bind="click: onSearch" class="k-icon k-i-search" href="#">&nbsp;</a>
+            <input data-bind="value: query, events:{ keypress: search }"
+                   data-value-update="keypress"
+                   type="search" autofocus/>
+            <a data-bind="click: search" class="k-icon k-i-search" href="#">&nbsp;</a>
         </span>
-    </div>
-</script>
+    </script>
 
-<script id="searchResultTpl" type="text/x-kendo-template">
-    <ul data-template="searchResultItemTpl" data-bind="source: searchResultItems" class="k-menu"></ul>
-</script>
+    <script id="searchResultTpl" type="text/x-kendo-template">
+        <ul data-template="searchResultItemTpl" data-bind="source: searchResultItems" class="k-list-container"></ul>
+    </script>
 
-<script id="searchResultItemTpl" type="text/x-kendo-template">
-    <li class="k-item">
-        <img data-bind="attr: { src: imageSource, alt: imageAlt }" class="k-image" width="120" height="90">
-        <a data-bind="attr: { href: movieRoute }, text: movieTitle" class="k-link"></a>
-        <span data-bind="text: movieDescription"></span>
-    </li>
-</script>
+    <script id="searchResultItemTpl" type="text/x-kendo-template">
+        <li class="k-item k-list">
+            <img data-bind="attr: { src: imageSource, alt: imageAlt }" class="k-image" width="120" height="90">
+            <a data-bind="attr: { href: videoRoute }, text: videoTitle" class="k-link"></a>
+            <br>
+            <span data-bind="text: videoDescription"></span>
+        </li>
+    </script>
 
-<!--end templates-->
+    <script id="videoDetailsTpl" type="text/x-kendo-template">
+        <img data-bind="attr: { src: imageSource, alt: imageAlt }" class="k-image" >
+        <button id="playButton" data-bind="click: play" >Play</button>
+        <span data-bind="text: videoTitle" class="title"></span>
+        <span data-bind="text: videoDescription" class="description"></span>
+        <div class="comments-container">
+            <h4>leave your comment:<h4>
+                <textarea data-bind="value: userComment, events:{ keypress: addComment }"
+                          data-value-update="keypress"
+                          type="text"></textarea>
+            <h4>comments:<h4>
+            <ul data-template="commentItemTpl" class="comments-list" data-bind="source: comments"></ul>
+        </div>
+    </script>
+
+    <script id="commentItemTpl" type="text/x-kendo-template">
+        <li class="k-item k-list">
+            <span data-bind="text: commentText"></span>
+        </li>
+    </script>
+
+    <!--end templates-->
 
 
-<!--youtube API-->
-<script src="js/search.js"></script>
-<script src="http://apis.google.com/js/client.js?onload=onClientLoad&rand=132154"></script>
-
-<script src="js/main.js"></script>
-
-
-
+    <!--youtube API-->
+    <script src="js/main.js"></script>
+    <script src="http://apis.google.com/js/client.js?onload=appInit"></script>
 
 
 

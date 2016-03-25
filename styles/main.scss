@@ -1,5 +1,39 @@
+$sidebarWidth: 33%;
+//----------------------------------------------------------------------------------------------------------------------
+
+.search-panel{
+    margin-bottom: 10px;
+}
+
 .sidebar{
     float: left;
     min-height: calc(100% - 150px);
-    width: 33%;
+    width: $sidebarWidth;
+
+    ul li{
+        margin: 0 10px 15px 0;
+        min-height: 90px;
+
+        img{
+            vertical-align: top;
+            float: left;
+            margin-right: 10px;
+        }
+
+        a{
+            font-weight: bold;
+        }
+    }
 }
+
+.video-details{
+    margin-left: $sidebarWidth + 1%;
+    
+    .title{
+        display: block;
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+}
+

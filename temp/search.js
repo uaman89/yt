@@ -16,8 +16,6 @@ function onYouTubeApiLoad() {
 }
 
 
-//----------------------------------------------------------------------------------------------------------------------
-// not in use. justfor test:
 
 function search() {
     // Use the JavaScript client library to create a search.list() API call.
