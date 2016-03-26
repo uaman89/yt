@@ -25,7 +25,7 @@ var searchModel = kendo.observable({
             console.log('response:', response);
             searchModel.set('nextPageToken',  response.nextPageToken );
             var resultItems = new Array();
-            var arrTitles = new Array;
+            var autocompleteData = new Array;
 
             $.each(response.items, function( name, value ){
                 //console.log('name:', name);
@@ -41,13 +41,12 @@ var searchModel = kendo.observable({
                     videoAuthor: info.channelTitle,
                     videoPublishedAt: convertYoutubeDate( info.publishedAt ),
                 };
-
-
                 resultItems.push(resultItem);
-                arrTitles.push(info.title);
+                autocompleteData.push( { "id":  value.id.videoId, "title": info.title } );
             });
             searchModel.set('searchResultItems', resultItems);
-            searchModel.set('autocompleteData', arrTitles );
+            searchModel.set('autocompleteData', autocompleteData );
+            //console.log('searchModel.autocompleteData:', searchModel.autocompleteData);
         });
     },
 
@@ -89,7 +88,6 @@ var searchModel = kendo.observable({
 
 
                 resultItems.push(resultItem);
-                //arrTitles.push(info.title);
             });
             searchModel.set('searchResultItems', resultItems);
         });
@@ -102,9 +100,9 @@ var videoModel = kendo.observable({
     imageAlt: '',
     videoTitle: '',
     videoDescription: '',
-    videoPublishedAt: null,
-    videoId: null,
-    userComment: 'text your comment',
+    videoPublishedAt: '',
+    videoId: '',
+    userComment: '',
 
     open: function( videoId ) {
 
@@ -142,7 +140,6 @@ var videoModel = kendo.observable({
             iframe: true,
             content: this.videoUrl,
             close: function(e){
-                console.log('e:', e);
                 $('#playerWindow').html(''); //cause destroy doesn't want to work
             }
         }).data("kendoWindow");
@@ -208,7 +205,7 @@ router.route("/", function( ) {
 
 router.route("/video/:id", function( id ) {
 console.log('videoModel.videoId:', videoModel.videoId);
-    if ( videoModel.videoId === null ){
+    if ( !videoModel.videoId ){
         $('#videoDetails').fadeIn(500);
         $('#welcomeBlock').fadeOut(500);
     }
@@ -243,14 +240,24 @@ function appInit() {
         localStorageSupport = (('localStorage' in window && window['localStorage'] !== null));
 
         $('#searchQuery').kendoAutoComplete({
-            change: function(){
+            select: function(e) {
+                var dataItem = this.dataItem(e.item.index());
+                //alert(dataItem.id);
+                videoModel.open(dataItem.id);
+
+            },
+            filtering: function(e) {
+                //get filter descriptor
+                //console.log('e.filter:', e.filter);
                 searchModel.set('query',this.value());
                 searchModel.search();
+                this.suggest(this.value());
+                this.setDataSource(searchModel.autocompleteData);
+                // handle the event
             },
-            valuePrimitive: true,
-            dataTextField: "name"
+            dataTextField: "title"
+            //valuePrimitive: true,
         });
-        kendo.bind($('#searchQuery'), searchModel);
 
         router.start();
     });

@@ -44,7 +44,7 @@
             <!--<input data-bind="value: query, events:{ keypress: search }"-->
                    <!--data-value-update="keypress"-->
                    <!--type="search" autofocus/>-->
-            <input id="searchQuery" type="search" autofocus data-bind="source: autocompleteData">
+            <input id="searchQuery" type="search" autofocus data-bind="value: query, source: autocompleteData">
             <a data-bind="click: search" class="k-icon k-i-search" href="#">&nbsp;</a>
         </span>
     </script>
