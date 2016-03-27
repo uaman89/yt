@@ -26,7 +26,11 @@
 </head>
 <body>
 
-    <div id="app"> please wait. its loading .. .  .</div>
+    <div id="app">
+        <div class="please-wait">
+            <span>Loading...</span>
+        </div>
+    </div>
 
     <!--templates-->
 
@@ -39,20 +43,20 @@
     </script>
 
     <script id="searchPanelTpl" type="text/x-kendo-template">
-        <div class="k-header k-shadow">Let find somethig!</div>
-        <span class="k-textbox k-space-right" style="width: 100%;" >
-            <!--<input data-bind="value: query, events:{ keypress: search }"-->
-                   <!--data-value-update="keypress"-->
-                   <!--type="search" autofocus/>-->
-            <input id="searchQuery" type="search" autofocus data-bind="value: query, source: autocompleteData">
-            <a data-bind="click: search" class="k-icon k-i-search" href="#">&nbsp;</a>
+        <div class="k-header k-shadow">YouTube client with Keno UI</div>
+
+        <span class="k-textbox k-space-right2" style="width: 100%;" >
+        <input data-bind="value: query, source: autocompleteData" id="searchQuery" autofocus >
+
+        <a data-bind="click: search" class="k-icon k-i-search" href="#">&nbsp;</a>
+
         </span>
     </script>
 
     <script id="searchResultTpl" type="text/x-kendo-template">
         <ul data-template="searchResultItemTpl" data-bind="source: searchResultItems" class="k-list-container"></ul>
         <br>
-        <button data-bind="click: loadNextPageResult ">more videos...</button>
+        <button data-bind="click: loadNextPageResult" id="loadMoreBtn">more videos...</button>
     </script>
 
     <script id="searchResultItemTpl" type="text/x-kendo-template">
@@ -92,10 +96,10 @@
 
 
     <!--youtube API-->
+    <script src="js/models.js"></script>
+    <script src="js/route.js"></script>
     <script src="js/main.js"></script>
     <script src="http://apis.google.com/js/client.js?onload=appInit"></script>
-
-
 
 </body>
 </html>

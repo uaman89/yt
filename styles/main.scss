@@ -1,14 +1,43 @@
 $sidebarWidth: 33%;
 //----------------------------------------------------------------------------------------------------------------------
 
+#videoDetails,
+#searchResult
+{
+    display: none;
+}
+
+html,
+body,
+#app{
+    margin:0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+#app{
+    background: black;
+}
+//end init
+
+
 .search-panel{
     margin-bottom: 10px;
 }
+//end
+
 
 .sidebar{
     float: left;
     min-height: calc(100% - 150px);
     width: $sidebarWidth;
+    position: absolute;
+    bottom: 0px;
+    top: 92px;
+    overflow-x: hidden;
 
     ul li{
         margin: 0 10px 15px 0;
@@ -25,10 +54,11 @@ $sidebarWidth: 33%;
         }
     }
 }
+//end sidebar
+
 
 .video-details{
-    margin-left: $sidebarWidth + 1%;
-    
+
     .title{
         display: block;
         margin-bottom: 10px;
@@ -36,8 +66,42 @@ $sidebarWidth: 33%;
         font-weight: bold;
     }
 }
+//end video-details
 
-#videoDetails{
-    display: none;
+
+.show-result-panel {
+    #searchResult {
+        display: block;
+    }
+
+    .video-details {
+        margin-left: $sidebarWidth + 1%;
+    }
 }
+//end show-result-panel
 
+
+.please-wait{
+    width: 100%;
+    height: 100%;
+    background: url(/images/youtube-logo.jpg) center no-repeat;
+
+
+    span{
+        display: block;
+        position: relative;
+        top: 50%;
+        padding-top: 120px;
+        text-align: center;
+        color: white;
+        font-size: 16px;
+    }
+}
+//end please-wait
+
+
+#welcomeBlock{
+    color: white;
+    text-align: center;
+}
+//end welcomeBlock
