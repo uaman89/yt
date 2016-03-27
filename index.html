@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome to Kendo UI!</title>
+    <title>Youtube client</title>
     <!-- Common Kendo UI CSS for web and dataviz widgets -->
     <link href="lib/kendoui/styles/kendo.common.min.css" rel="stylesheet" />
 
@@ -22,7 +22,7 @@
     <!--<script src="lib/malihu-custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>-->
     <link rel="stylesheet" href="lib/malihu-custom-scrollbar/jquery.mCustomScrollbar.min.css">
 
-    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="styles/main.css">
 
 </head>
 <body>
@@ -84,10 +84,12 @@
             <span data-bind="text: videoDescription"></span>
         </p>
         <div class="comments-container">
-            <h4>comments:</h4>
+            <h4>leave your comment:</h4>
             <textarea data-bind="value: userComment, events:{ keypress: addComment }"
                       data-value-update="keypress"
                       placeholder=" text your comment here "></textarea>
+            <span class="help-text">to add comment press ENTER</span>
+            <h4>comments:</h4>
             <p data-bind="text: noCommentsMsg"></p>
             <ul data-template="commentItemTpl" class="comments-list" data-bind="source: comments"></ul>
         </div>
@@ -97,8 +99,9 @@
 
     <script id="commentItemTpl" type="text/x-kendo-template">
         <li>
-            <span data-bind="text: commentDateTime"></span><br/>
-            <span data-bind="text: commentText"></span>
+            <span data-bind="text: commentDateTime" class="date"></span>
+            &nbsp;&nbsp;
+            <span data-bind="text: commentText" class="text"></span>
         </li>
     </script>
 

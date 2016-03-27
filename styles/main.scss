@@ -264,6 +264,11 @@ $bigImgWidth: 480px;
 
     .comments-container{
         clear: both;
+        border-top: 1px dashed grey;
+
+        h4{
+            margin: 10px 0;
+        }
 
         textarea{
             width: $bigImgWidth - 2px;
@@ -272,6 +277,31 @@ $bigImgWidth: 480px;
             height: 3em;
             margin: 0;
             box-sizing: border-box;
+        }
+
+        .help-text{
+            display: block;
+            margin: 5px;
+            text-align: center;
+            width: $bigImgWidth;
+            font-size: 10px;
+            color: grey;
+        }
+
+        ul{
+            margin: 10px 0;
+            padding: 0 0 10px 20px;
+
+            li{
+                padding: 0;
+                list-style-type: circle;
+
+                .date{
+                    color: grey;
+                    font-size: 14px;
+                }
+
+            }
         }
     }
 }
