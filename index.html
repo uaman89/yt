@@ -48,41 +48,55 @@
 
     <script id="searchResultTpl" type="text/x-kendo-template">
         <ul data-template="searchResultItemTpl" data-bind="source: searchResultItems" tabindex="-1"></ul>
-        <br>
-        <button data-bind="click: loadNextPageResult" id="loadMoreBtn">more videos...</button>
+        <button data-bind="click: loadNextPageResult" class="load-more">more videos...</button>
     </script>
 
     <script id="searchResultItemTpl" type="text/x-kendo-template">
         <li>
-            <a data-bind="attr: { href: videoRoute }" class="k-link">
-
-                <img data-bind="attr: { src: imageSource, alt: imageAlt }" class="k-image" width="120" height="90">
+            <a data-bind="attr: { href: videoRoute }" >
+                <img data-bind="attr: { src: imageSource, alt: imageAlt }" width="120" height="90">
                 <span data-bind="text: videoTitle" class="title"></span>
-                <div>
-                    <span data-bind="text: videoAuthor" class="author"></span>
+                <div class="footer">
                     <span data-bind="text: videoPublishedAt" class="date"></span>
+                    <span data-bind="text: videoAuthor" class="author"></span>
                 </div>
             </a>
         </li>
     </script>
 
     <script id="videoDetailsTpl" type="text/x-kendo-template">
-        <img data-bind="attr: { src: imageSource, alt: imageAlt }" class="k-image" >
-        <button id="playButton" data-bind="click: play" >Play</button>
+        <span data-bind="click: play" id="playVideo">
+            <img data-bind="attr: { src: imageSource, alt: imageAlt }" >
+            <button class="play-btn">
+                <svg height="25" width="20">
+                    <polygon points="0,0 20,12.5 0,25" style="fill:white;"></polygon>
+                </svg>
+            </button>
+        </span>
         <span data-bind="text: videoTitle" class="title"></span>
-        <!--<span data-bind="text: videoDescription" class="description"></span>-->
+        <span data-bind="text: videoDate" class="title"></span>
+        <div class="info">
+            <p>Views: <span data-bind="text: videoViewCount"></span></p>
+            <p>published at <span data-bind="text: videoPublishedAt"></span></p>
+            <p>Author: <span data-bind="text: videoAuthor"></span></p>
+        </div>
+        <p class="description">
+            <span data-bind="text: videoDescription"></span>
+        </p>
         <div class="comments-container">
-            <h4>leave your comment:</h4>
-                <textarea data-bind="value: userComment, events:{ keypress: addComment }"
-                          data-value-update="keypress"
-                          type="text"></textarea>
             <h4>comments:</h4>
+            <textarea data-bind="value: userComment, events:{ keypress: addComment }"
+                      data-value-update="keypress"
+                      placeholder=" text your comment here "></textarea>
+            <p data-bind="text: noCommentsMsg"></p>
             <ul data-template="commentItemTpl" class="comments-list" data-bind="source: comments"></ul>
         </div>
+
+
     </script>
 
     <script id="commentItemTpl" type="text/x-kendo-template">
-        <li class="k-item k-list">
+        <li>
             <span data-bind="text: commentDateTime"></span><br/>
             <span data-bind="text: commentText"></span>
         </li>

@@ -1,5 +1,6 @@
 //colors:
 $youtubeRed: #D60000;
+$youtubeRedLight: #e9695e;
 $almostBlack: #02080C;
 $blockBg: whitesmoke;
 //----------------------------------------------------------------------------------------------------------------------
@@ -9,6 +10,12 @@ $sidebarWidth: 33%;
 $borderRadius: 7px;
 //----------------------------------------------------------------------------------------------------------------------
 
+//mixins
+@mixin youtubeGradient( $angle:0deg ){
+    background: $youtubeRed;
+    background: linear-gradient( $angle, $almostBlack, $youtubeRed);
+}
+//----------------------------------------------------------------------------------------------------------------------
 #videoDetails,
 #searchResult
 {
@@ -30,18 +37,22 @@ body{
 }
 #app{
     overflow: auto;
+    min-width: 760px;
 }
 //end init
 
 
 .search-panel{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 77px;
     margin-bottom: 10px;
     padding: 10px;
     text-align: center;
 
-    background: $youtubeRed;
-    background: linear-gradient(0deg, $almostBlack, $youtubeRed);
-    //background-size: 400% 400%;
+    @include youtubeGradient();
 
     .header{
         color: white;
@@ -77,13 +88,14 @@ body{
     margin: 5px;
     padding: 3px;
     box-sizing: border-box;
+    position: absolute;
+    top: 82px;
 }
 //end panel
 
 
 .sidebar{
-    position: absolute;
-    top: 82px;
+
     float: left;
     min-height: calc(100% - 150px);
     width: $sidebarWidth;
@@ -95,17 +107,33 @@ body{
         margin: 0;
 
         li {
-            margin: 0 10px 15px 0;
             min-height: 90px;
 
             a {
                 display: block;
                 color: $almostBlack;
                 overflow: auto;
+                margin-bottom: 10px;
+                border-radius: 7px;
+                transition: margin .3s, padding 0.3s;
 
-                &:focus{
-                    background: $youtubeRed;
+                &:focus,
+                &:hover{
+                    background: $youtubeRedLight;
                     color: white;
+                    padding: 5px 0 0 5px;
+                    margin-bottom: 5px;
+                    font-weight: normal;
+
+                    img{
+                        float: right;
+                        margin: 0 5px 0 5px;
+                    }
+
+                    .footer{
+                        background: $youtubeRedLight;
+                        color: #380100;
+                    }
                 }
             }
 
@@ -115,15 +143,38 @@ body{
                 margin-right: 10px;
             }
 
-            span{
-                display: block;
-            }
 
             .title{
+                display: block;
                 font-weight: bold;
             }
 
+            .footer{
+                clear: both;
+                padding: 5px;
+                background: #DEDEDE;
+                overflow: auto;
+
+                .date{
+                    float: left;
+                }
+
+                .author{
+                    float: right;
+                }
+            }
         }
+    }
+
+    .load-more{
+        border-radius: 16px;
+        color: white;
+        display: block;
+        margin: 5px auto 15px;
+        @include youtubeGradient();
+        padding: 20px;
+        cursor: pointer;
+        outline: none;
     }
 
     //override custom scrollbar plugin style
@@ -145,26 +196,98 @@ body{
 }
 //end sidebar
 
+$bigImgWidth: 480px;
 
 .video-details{
+    left: 0px;
+    right: 0px;
+    bottom: 0;
+
+    img{
+        width: $bigImgWidth;
+        border-radius: 7px 0 0 0;
+        float: left;
+        margin: 0 5px 5px 0;
+    }
+
+
+    .play-btn{
+        position: absolute;
+        left: 203px;
+        top: 230px;
+        opacity: 0.6;
+        @include youtubeGradient(17deg);
+        border-top-left-radius: 12px 20px;
+        border-top-right-radius: 12px 20px;
+        border-bottom-left-radius: 12px 20px;
+        border-bottom-right-radius: 12px 20px;
+        height: 50px;
+        width: 75px;
+        border: none;
+        outline: none;
+
+        svg{
+            margin-left: 5px;
+        }
+    }
+
+    #playVideo:hover .play-btn{
+        opacity: 1;
+        transform: scale(1.5);
+        box-shadow: 0px 13px 16px 0px rgba(0, 0, 0, 1);;
+        transition: all 0.3s;
+        cursor: pointer;
+    }
 
     .title{
         display: block;
         margin-bottom: 10px;
-        font-size: 18px;
+        font-size: 20px;
         font-weight: bold;
+    }
+    .info{
+        margin: 10px 0;
+        border: dashed 1px grey;
+        border-width: 1px 0;
+        color: grey;
+        margin: 5px 0;
+        font-size: 16px;
+
+        span{
+            font-weight: bold;
+        }
+    }
+
+    .description{
+        padding: 10px;
+    }
+
+    .comments-container{
+        clear: both;
+
+        textarea{
+            width: $bigImgWidth - 2px;
+            outline: none;
+            resize: none;
+            height: 3em;
+            margin: 0;
+            box-sizing: border-box;
+        }
     }
 }
 //end video-details
 
 
 .show-result-panel {
+
     #searchResult {
         display: block;
     }
 
     .video-details {
-        margin-left: $sidebarWidth + 1%;
+        margin-left: 33%;
+        left: 10px;
+        //margin-right: 15px;
     }
 }
 //end show-result-panel

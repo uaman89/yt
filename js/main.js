@@ -61,7 +61,7 @@ function appInit() {
         var autocomplete = $("#searchQuery").data("kendoAutoComplete");
         autocomplete.focus();
 
-        $('.sidebar').mCustomScrollbar({
+        $('.sidebar, .video-details').mCustomScrollbar({
             theme: "rounded-dark",
             snapOffset: 20,
             callbacks:{
@@ -79,6 +79,10 @@ function appInit() {
 
 function convertYoutubeDate( strDate ){
     var publishedAt = strDate.split('T')[0].split('-');
-    var converted = publishedAt[2] + ' ' + publishedAt[1] + ' ' + publishedAt[0];
+    var converted = publishedAt[2] + ' ' + arrMonthNames[ publishedAt[1] - 1 ] + ' ' + publishedAt[0];
     return converted;
 }
+
+var arrMonthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+];

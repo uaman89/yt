@@ -73,9 +73,12 @@ VideoModel = {
     imageAlt: '',
     videoTitle: '',
     videoDescription: '',
+    videoViewCount: '',
+    videoAuthor: '',
     videoPublishedAt: '',
     videoId: '',
     userComment: '',
+    noCommentsMsg: '',
 
     open: function( videoId ) {
 
@@ -93,8 +96,11 @@ VideoModel = {
             self.set('imageAlt', info.title);
             self.set('videoTitle', info.title);
             self.set('videoDescription', info.description);
+            self.set('videoPublishedAt', convertYoutubeDate( info.publishedAt ));
+            self.set('videoAuthor', info.channelTitle);
+            self.set('videoViewCount', response.items[0].statistics.viewCount);
             //self.set('videoUrl', 'http://www.youtube.com/v/' + videoId + '?fs=1&autoplay=1') //flash
-            self.set('videoUrl', 'http://www.youtube.com/embed/' + videoId + '?fs=1&autoplay=1') //html5
+            self.set('videoUrl', 'http://www.youtube.com/embed/' + videoId + '?fs=1&autoplay=1'); //html5
         });
 
         this.set('videoId', videoId);
@@ -156,16 +162,20 @@ VideoModel = {
 
             localStorage.setItem( this.videoId, JSON.stringify(arrComments));
             console.log('localStorage:', localStorage);
+
+            this.set('noCommentsMsg', '');
         }
     },
     loadComments: function(){
         console.log('loadComments invoke');
-        if (!localStorageSupport) {
-            data = null;
-            alert('sorry, comments are unavailable!');
-        }
-        else
+        var data = new Array();
+        if (localStorageSupport)
             data = JSON.parse(localStorage.getItem(this.videoId)) || new Array();
+        //console.log('data:', data);
+
+        //var msg = ;
+        this.set('noCommentsMsg',  data.length == 0  ? 'there is no comments yet...' : '');
+
         this.set('comments',  data);
         console.log('this.comments:', this.comments);
     }
