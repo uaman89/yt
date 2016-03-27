@@ -61,6 +61,17 @@ function appInit() {
         var autocomplete = $("#searchQuery").data("kendoAutoComplete");
         autocomplete.focus();
 
+        $('.sidebar').mCustomScrollbar({
+            theme: "rounded-dark",
+            snapOffset: 20,
+            callbacks:{
+                //remove tabindex for better user experience
+                onInit:function(){
+                    var res = $('.sidebar > .mCustomScrollBox').removeAttr('tabindex');
+                }
+            }
+        });
+
         router.start();
     });
 }

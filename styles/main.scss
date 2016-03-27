@@ -1,4 +1,12 @@
+//colors:
+$youtubeRed: #D60000;
+$almostBlack: #02080C;
+$blockBg: whitesmoke;
+//----------------------------------------------------------------------------------------------------------------------
+
+//sizes:
 $sidebarWidth: 33%;
+$borderRadius: 7px;
 //----------------------------------------------------------------------------------------------------------------------
 
 #videoDetails,
@@ -14,43 +22,124 @@ body,
     padding: 0;
     width: 100%;
     height: 100%;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
-
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: $almostBlack;
+}
 #app{
-    background: black;
+    overflow: auto;
 }
 //end init
 
 
 .search-panel{
     margin-bottom: 10px;
+    padding: 10px;
+    text-align: center;
+
+    background: $youtubeRed;
+    background: linear-gradient(0deg, $almostBlack, $youtubeRed);
+    //background-size: 400% 400%;
+
+    .header{
+        color: white;
+        margin-bottom: 5px;
+    }
+
+    .search-field{
+        width: 80%;
+        text-align: center;
+    }
 }
-//end
+
+#searchQuery-list{
+    background: $blockBg;
+    border: 0;
+    box-shadow: 0px 19px 19px -5px rgba(0,0,0,0.5);
+    border-radius: 0 0 8px 8px;
+    //left: 1px;
+    opacity: 0.9;
+
+    ul li.k-state-focused{
+        background: $youtubeRed;
+        color: white;
+    }
+}
+//end search-panel
+
+
+
+.panel{
+    background: $blockBg;
+    border-radius: 7px;
+    margin: 5px;
+    padding: 3px;
+    box-sizing: border-box;
+}
+//end panel
 
 
 .sidebar{
+    position: absolute;
+    top: 82px;
     float: left;
     min-height: calc(100% - 150px);
     width: $sidebarWidth;
-    position: absolute;
     bottom: 0px;
-    top: 92px;
-    overflow-x: hidden;
+    //overflow-x: hidden;
 
-    ul li{
-        margin: 0 10px 15px 0;
-        min-height: 90px;
+    ul {
+        padding: 0;
+        margin: 0;
 
-        img{
-            vertical-align: top;
-            float: left;
-            margin-right: 10px;
+        li {
+            margin: 0 10px 15px 0;
+            min-height: 90px;
+
+            a {
+                display: block;
+                color: $almostBlack;
+                overflow: auto;
+
+                &:focus{
+                    background: $youtubeRed;
+                    color: white;
+                }
+            }
+
+            img {
+                vertical-align: top;
+                float: left;
+                margin-right: 10px;
+            }
+
+            span{
+                display: block;
+            }
+
+            .title{
+                font-weight: bold;
+            }
+
         }
+    }
 
-        a{
-            font-weight: bold;
+    //override custom scrollbar plugin style
+    .mCSB_inside>.mCSB_container{
+        margin-right: 21px;
+    }
+    .mCSB_draggerContainer{
+        top: 2px;
+        bottom: 2px;
+
+        & > .mCSB_draggerRail{
+            position: absolute;
+            left: 50%;
+            margin-left: -1px;
+            top: 8px;
+            bottom: 8px;
         }
     }
 }
@@ -105,3 +194,10 @@ body,
     text-align: center;
 }
 //end welcomeBlock
+
+.fancybox-close{
+    top: 0;
+    right: -45px;
+    //background: url(/lib/fancybox/fancybox_sprite.png?123423);
+}
+

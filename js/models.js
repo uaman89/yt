@@ -25,9 +25,11 @@ SearchModel = {
 
     var request = gapi.client.youtube.search.list( searchParams );
 
+    var self = this;
+
     request.execute( function( response ){
         console.log('response:', response);
-        searchModel.set('nextPageToken',  response.nextPageToken );
+        self.set('nextPageToken',  response.nextPageToken );
         var resultItems = new Array();
         var autocompleteData = new Array;
 
@@ -50,11 +52,10 @@ SearchModel = {
         });
 
         //check previous results. if it was empty before - we need show result Panel now.
-        if ( searchModel.searchResultItems.length == 0 ) $('#app').addClass('show-result-panel');
+        if ( self.searchResultItems.length == 0 ) $('#app').addClass('show-result-panel');
 
-        searchModel.set('searchResultItems', resultItems);
-        searchModel.set('autocompleteData', autocompleteData );
-
+        self.set('searchResultItems', resultItems);
+        self.set('autocompleteData', autocompleteData );
 
     });
 },
@@ -63,8 +64,8 @@ SearchModel = {
         this.search(this.nextPageToken);
     }
 
-}
-//----------------------------------------------------------------------------------------------------------------------
+};
+//--- end SearchModel --------------------------------------------------------------------------------------------------
 
 
 VideoModel = {
@@ -82,17 +83,18 @@ VideoModel = {
             part: 'snippet,statistics',
             id: videoId
         });
-        var model = this;
+        var self = this;
         request.execute(function (response) {
             console.log('response', response);
             //console.log('model', model);
             var info = response.items[0].snippet;
             imgSrc = info.thumbnails.high.url;
-            videoModel.set('imageSource', imgSrc);
-            model.set('imageAlt', info.title);
-            model.set('videoTitle', info.title);
-            model.set('videoDescription', info.description);
-            model.set('videoUrl', 'http://www.youtube.com/v/' + videoId + '?fs=1&autoplay=1')
+            self.set('imageSource', imgSrc);
+            self.set('imageAlt', info.title);
+            self.set('videoTitle', info.title);
+            self.set('videoDescription', info.description);
+            //self.set('videoUrl', 'http://www.youtube.com/v/' + videoId + '?fs=1&autoplay=1') //flash
+            self.set('videoUrl', 'http://www.youtube.com/embed/' + videoId + '?fs=1&autoplay=1') //html5
         });
 
         this.set('videoId', videoId);
@@ -101,6 +103,21 @@ VideoModel = {
 
     play: function() {
 
+        $.fancybox({
+            'padding'		: 0,
+            'autoScale'		: false,
+            'transitionIn'	: 'fade',
+            'transitionOut'	: 'fade',
+            'title'			: this.videoTitle,
+            'href'			: this.videoUrl,
+            'type'			: 'iframe', //'swf' - for flash
+            //'swf'			: {
+            //    'wmode'				: 'transparent',
+            //    'allowfullscreen'	: 'true'
+            //}
+        });
+
+        /* kendoWindow is lagging...
         $('#playerWindow').kendoWindow({
             actions: ["Refresh", "Maximize", "Minimize", "Close"],
             draggable: true,
@@ -118,6 +135,7 @@ VideoModel = {
 
         var player = $("#playerWindow").data("kendoWindow");
         player.center().open();
+        */
 
     },
 
@@ -151,4 +169,4 @@ VideoModel = {
         this.set('comments',  data);
         console.log('this.comments:', this.comments);
     }
-}
+};
