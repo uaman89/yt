@@ -96,7 +96,8 @@ body{
   border-radius: 8px;
 
   //animashka
-  -webkit-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; //anti-aliasing for Chrome
+  border: 1px solid white; //anti-aliasing for FF
   position: relative;
   z-index: 2;
 

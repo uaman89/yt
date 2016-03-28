@@ -61,6 +61,7 @@ body {
   vertical-align: middle;
   border-radius: 8px;
   -webkit-backface-visibility: hidden;
+  border: 1px solid white;
   position: relative;
   z-index: 2;
   box-shadow: -3px 10px 15px -4px black;
