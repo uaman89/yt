@@ -15,11 +15,9 @@
     <script src="lib/kendoui/js/kendo.all.min.js"></script>
 
     <!--fancybox-->
-    <!--<script src="lib/fancybox/jquery.fancybox.pack.js"></script>-->
     <link rel="stylesheet" href="lib/fancybox/jquery.fancybox.css">
 
     <!--customize scrollbars-->
-    <!--<script src="lib/malihu-custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>-->
     <link rel="stylesheet" href="lib/malihu-custom-scrollbar/jquery.mCustomScrollbar.min.css">
 
     <link rel="stylesheet" href="styles/main.css">
@@ -42,7 +40,9 @@
     </script>
 
     <script id="searchPanelTpl" type="text/x-kendo-template">
-        <div class="header">YouTube client with Keno UI</div>
+        <div class="header">
+            <a href="/" class="home-link"> YouTube </a>
+            client with Keno UI</div>
         <input data-bind="value: query, source: autocompleteData" id="searchQuery" class="search-field" autofocus>
     </script>
 

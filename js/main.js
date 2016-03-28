@@ -22,7 +22,7 @@ var localStorageSupport = false;
 function appInit() {
     gapi.client.load('youtube', 'v3', function(){
 
-        console.log('youtube client loaded');
+        //console.log('youtube client loaded');
 
         gapi.client.setApiKey('AIzaSyCYvoN4eLABsyKaG1nS8T1GSHMKL5Us3BA');
 

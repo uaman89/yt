@@ -10,7 +10,7 @@ SearchModel = {
 
     search: function( pageToken ){
 
-    console.log('try find "' + this.query + '"');
+    //console.log('try find "' + this.query + '"');
 
     var searchParams = {
         q: this.query,
@@ -28,7 +28,7 @@ SearchModel = {
     var self = this;
 
     request.execute( function( response ){
-        console.log('response:', response);
+        //console.log('response:', response);
         self.set('nextPageToken',  response.nextPageToken );
         var resultItems = new Array();
         var autocompleteData = new Array;
@@ -88,7 +88,7 @@ VideoModel = {
         });
         var self = this;
         request.execute(function (response) {
-            console.log('response', response);
+            //console.log('response', response);
             //console.log('model', model);
             var info = response.items[0].snippet;
             imgSrc = info.thumbnails.high.url;
@@ -148,26 +148,47 @@ VideoModel = {
     comments: null,
 
     addComment: function(e){
-        if (e.keyCode == 13) {
+        if (e.keyCode == 13 && e.shiftKey === false) {
+
+            //handle user comment
+            var comment = this.userComment;
+
+            if ( comment == '' ) {
+                alert('we don\'t add empty comments ;-)');
+                return;
+            }
+            comment = comment.replace(/^(?=\n)$|^\s*|\s*$|\n\n+/gm,"");
+            console.log('comment', '['+comment+']');
+
             arrComments = this.comments;
-            console.log('new comment: ', this.userComment);
+            for ( key in arrComments ){
+                if ( arrComments[ key ]['commentText'] == comment ){
+                    alert("That comment already exists.\nBe more creative!");
+
+                    return;
+                }
+            }
+
+
+
+            //console.log('new comment: ', this.userComment);
             arrComments.push({
-                commentText: this.userComment,
+                commentText: comment,
                 commentDateTime: new Date().toLocaleString(),
             });
 
-            console.log('new arrComments:',arrComments);
+            //console.log('new arrComments:',arrComments);
 
             this.set('comments', arrComments);
 
             localStorage.setItem( this.videoId, JSON.stringify(arrComments));
-            console.log('localStorage:', localStorage);
+            //console.log('localStorage:', localStorage);
 
             this.set('noCommentsMsg', '');
         }
     },
     loadComments: function(){
-        console.log('loadComments invoke');
+        //console.log('loadComments invoke');
         var data = new Array();
         if (localStorageSupport)
             data = JSON.parse(localStorage.getItem(this.videoId)) || new Array();
@@ -177,6 +198,6 @@ VideoModel = {
         this.set('noCommentsMsg',  data.length == 0  ? 'there is no comments yet...' : '');
 
         this.set('comments',  data);
-        console.log('this.comments:', this.comments);
+        //console.log('this.comments:', this.comments);
     }
 };

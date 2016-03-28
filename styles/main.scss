@@ -78,6 +78,31 @@ body{
         color: white;
     }
 }
+.home-link{
+  border-bottom: 1px dashed;
+  font-weight: bold;
+  font-size: 0;
+  color: transparent;
+  background: url(/images/small-logo.png);
+  width: 76px;
+  height: 30px;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 8px;
+
+  //animashka
+  -webkit-backface-visibility: hidden;
+  position: relative;
+  z-index: 2;
+
+  box-shadow: -3px 10px 15px -4px black;
+  transition: all 0.5s;
+  margin-right: 5px;
+
+  &:hover{
+    transform: rotate(-8deg);
+  }
+}
 //end search-panel
 
 
@@ -272,8 +297,9 @@ $bigImgWidth: 480px;
 
         textarea{
             width: $bigImgWidth - 2px;
+            max-width: $bigImgWidth - 2px;
             outline: none;
-            resize: none;
+            //resize: none;
             height: 3em;
             margin: 0;
             box-sizing: border-box;
