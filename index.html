@@ -2,26 +2,8 @@
 <html>
 <head>
     <title>Youtube client</title>
-    <!-- Common Kendo UI CSS for web and dataviz widgets -->
-    <link href="lib/kendoui/styles/kendo.common.min.css" rel="stylesheet" />
-
-    <!-- (optional) Kendo UI web widgets' RTL CSS, include only in right-to-left applications -->
-    <link href="lib/kendoui/styles/kendo.rtl.min.css" rel="stylesheet" type="text/css" />
-
-    <!-- jQuery JavaScript -->
-    <script src="lib/kendoui/js/jquery.min.js"></script>
-
-    <!-- Kendo UI combined JavaScript -->
-    <script src="lib/kendoui/js/kendo.all.min.js"></script>
-
-    <!--fancybox-->
-    <link rel="stylesheet" href="lib/fancybox/jquery.fancybox.css">
-
-    <!--customize scrollbars-->
-    <link rel="stylesheet" href="lib/malihu-custom-scrollbar/jquery.mCustomScrollbar.min.css">
-
-    <link rel="stylesheet" href="styles/main.css">
-
+    <link rel="stylesheet" href="styles/main.min.css">
+    <script src="js/header_script.min.js"></script>
 </head>
 <body>
 
@@ -36,7 +18,10 @@
         <div id="searchResult" class="sidebar panel"></div>
         <div id="videoDetails" class="video-details panel"></div>
         <div id="playerWindow"></div>
-        <div id="welcomeBlock"><h2>Welcome!</h2></div>
+    </script>
+
+    <script id="welcomeMsgTpl" type="text/x-kendo-template">
+        <div class="welcome-block please-wait"><h2>Welcome!</h2></div>
     </script>
 
     <script id="searchPanelTpl" type="text/x-kendo-template">
@@ -107,19 +92,12 @@
 
     <!--end templates-->
 
+
     <!--app scripts-->
-    <script src="js/models.js"></script>
-    <script src="js/route.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/bottom_script.min.js"></script>
 
     <!--youtube API-->
     <script src="http://apis.google.com/js/client.js?onload=appInit"></script>
-
-    <!--fancybox-->
-    <script src="lib/fancybox/jquery.fancybox.pack.js"></script>
-
-    <!--customize scrollbars-->
-    <script src="lib/malihu-custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 
 </body>
 </html>
