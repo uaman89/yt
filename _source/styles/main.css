@@ -1,0 +1,255 @@
+#videoDetails,
+#searchResult {
+  display: none; }
+
+html,
+body,
+#app,
+#app > div {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%; }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #02080C; }
+
+#app {
+  overflow: auto;
+  min-width: 760px; }
+  #app > div {
+    overflow: hidden; }
+
+.search-panel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 77px;
+  margin-bottom: 10px;
+  padding: 10px;
+  text-align: center;
+  background: #D60000;
+  background: linear-gradient(0deg, #02080C, #D60000); }
+  .search-panel .header {
+    color: white;
+    margin-bottom: 5px; }
+  .search-panel .search-field {
+    width: 80%;
+    text-align: center; }
+
+#searchQuery-list {
+  background: whitesmoke;
+  border: 0;
+  box-shadow: 0px 19px 19px -5px rgba(0, 0, 0, 0.5);
+  border-radius: 0 0 8px 8px;
+  opacity: 0.9; }
+  #searchQuery-list ul li.k-state-focused {
+    background: #D60000;
+    color: white; }
+
+.home-link {
+  border-bottom: 1px dashed;
+  font-weight: bold;
+  font-size: 0;
+  color: transparent;
+  background: url(/images/small-logo.png);
+  width: 76px;
+  height: 30px;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 8px;
+  -webkit-backface-visibility: hidden;
+  position: relative;
+  z-index: 2;
+  box-shadow: -3px 10px 15px -4px black;
+  transition: all 0.5s;
+  margin-right: 5px; }
+  .home-link:hover {
+    transform: rotate(-8deg); }
+
+.panel {
+  background: whitesmoke;
+  border-radius: 7px;
+  margin: 5px;
+  padding: 3px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 82px; }
+
+.sidebar {
+  float: left;
+  min-height: calc(100% - 150px);
+  width: 33%;
+  bottom: 0px; }
+  .sidebar ul {
+    padding: 0;
+    margin: 0; }
+    .sidebar ul li {
+      min-height: 90px; }
+      .sidebar ul li a {
+        display: block;
+        color: #02080C;
+        overflow: auto;
+        margin-bottom: 10px;
+        border-radius: 7px;
+        transition: margin .3s, padding 0.3s; }
+        .sidebar ul li a:focus, .sidebar ul li a:hover {
+          background: #e9695e;
+          color: white;
+          padding: 5px 0 0 5px;
+          margin-bottom: 5px;
+          font-weight: normal; }
+          .sidebar ul li a:focus img, .sidebar ul li a:hover img {
+            float: right;
+            margin: 0 5px 0 5px; }
+          .sidebar ul li a:focus .footer, .sidebar ul li a:hover .footer {
+            background: #e9695e;
+            color: #380100; }
+      .sidebar ul li img {
+        vertical-align: top;
+        float: left;
+        margin-right: 10px; }
+      .sidebar ul li .title {
+        display: block;
+        font-weight: bold; }
+      .sidebar ul li .footer {
+        clear: both;
+        padding: 5px;
+        background: #DEDEDE;
+        overflow: auto; }
+        .sidebar ul li .footer .date {
+          float: left; }
+        .sidebar ul li .footer .author {
+          float: right; }
+  .sidebar .load-more {
+    border-radius: 16px;
+    color: white;
+    display: block;
+    margin: 5px auto 15px;
+    background: #D60000;
+    background: linear-gradient(0deg, #02080C, #D60000);
+    padding: 20px;
+    cursor: pointer;
+    outline: none; }
+  .sidebar .mCSB_inside > .mCSB_container {
+    margin-right: 21px; }
+  .sidebar .mCSB_draggerContainer {
+    top: 2px;
+    bottom: 2px; }
+    .sidebar .mCSB_draggerContainer > .mCSB_draggerRail {
+      position: absolute;
+      left: 50%;
+      margin-left: -1px;
+      top: 8px;
+      bottom: 8px; }
+
+.video-details {
+  left: 0px;
+  right: 0px;
+  bottom: 0; }
+  .video-details img {
+    width: 480px;
+    border-radius: 7px 0 0 0;
+    float: left;
+    margin: 0 5px 5px 0; }
+  .video-details .play-btn {
+    position: absolute;
+    left: 203px;
+    top: 230px;
+    opacity: 0.6;
+    background: #D60000;
+    background: linear-gradient(17deg, #02080C, #D60000);
+    border-top-left-radius: 12px 20px;
+    border-top-right-radius: 12px 20px;
+    border-bottom-left-radius: 12px 20px;
+    border-bottom-right-radius: 12px 20px;
+    height: 50px;
+    width: 75px;
+    border: none;
+    outline: none; }
+    .video-details .play-btn svg {
+      margin-left: 5px; }
+  .video-details #playVideo:hover .play-btn {
+    opacity: 1;
+    transform: scale(1.5);
+    box-shadow: 0px 13px 16px 0px black;
+    transition: all 0.3s;
+    cursor: pointer; }
+  .video-details .title {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold; }
+  .video-details .info {
+    margin: 10px 0;
+    border: dashed 1px grey;
+    border-width: 1px 0;
+    color: grey;
+    margin: 5px 0;
+    font-size: 16px; }
+    .video-details .info span {
+      font-weight: bold; }
+  .video-details .description {
+    padding: 10px; }
+  .video-details .comments-container {
+    clear: both;
+    border-top: 1px dashed grey; }
+    .video-details .comments-container h4 {
+      margin: 10px 0; }
+    .video-details .comments-container textarea {
+      width: 478px;
+      max-width: 478px;
+      outline: none;
+      height: 3em;
+      margin: 0;
+      box-sizing: border-box; }
+    .video-details .comments-container .help-text {
+      display: block;
+      margin: 5px;
+      text-align: center;
+      width: 480px;
+      font-size: 10px;
+      color: grey; }
+    .video-details .comments-container ul {
+      margin: 10px 0;
+      padding: 0 0 10px 20px; }
+      .video-details .comments-container ul li {
+        padding: 0;
+        list-style-type: circle; }
+        .video-details .comments-container ul li .date {
+          color: grey;
+          font-size: 14px; }
+
+.show-result-panel #searchResult {
+  display: block; }
+.show-result-panel .video-details {
+  margin-left: 33%;
+  left: 10px; }
+
+.please-wait {
+  width: 100%;
+  height: 100%;
+  background: url(/images/youtube-logo.jpg) center no-repeat; }
+  .please-wait span {
+    display: block;
+    position: relative;
+    top: 50%;
+    padding-top: 120px;
+    text-align: center;
+    color: white;
+    font-size: 16px; }
+
+.welcome-block h2 {
+  color: white;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%; }
+
+.fancybox-close {
+  top: 0;
+  right: -45px; }
+
+/*# sourceMappingURL=main.css.map */

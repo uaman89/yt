@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Youtube client</title>
+    <!-- Common Kendo UI CSS for web and dataviz widgets -->
+    <link href="lib/kendoui/styles/kendo.common.min.css" rel="stylesheet" />
+
+    <!-- (optional) Kendo UI web widgets' RTL CSS, include only in right-to-left applications -->
+    <link href="lib/kendoui/styles/kendo.rtl.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- jQuery JavaScript -->
+    <script src="lib/kendoui/js/jquery.min.js"></script>
+
+    <!-- Kendo UI combined JavaScript -->
+    <script src="lib/kendoui/js/kendo.all.min.js"></script>
+
+    <!--fancybox-->
+    <link rel="stylesheet" href="lib/fancybox/jquery.fancybox.css">
+
+    <!--customize scrollbars-->
+    <link rel="stylesheet" href="lib/malihu-custom-scrollbar/jquery.mCustomScrollbar.min.css">
+
+    <link rel="stylesheet" href="styles/main.min.css">
+
+</head>
+<body>
+
+<div id="app">
+    <div class="please-wait"><span>Loading...</span></div>
+</div>
+
+<!--templates-->
+
+<script id="appLayout" type="text/x-kendo-template">
+    <div id="searchPanel" class="search-panel"></div>
+    <div id="searchResult" class="sidebar panel"></div>
+    <div id="videoDetails" class="video-details panel"></div>
+    <div id="playerWindow"></div>
+    <div id="welcomeBlock"><h2>Welcome!</h2></div>
+</script>
+
+<script id="searchPanelTpl" type="text/x-kendo-template">
+    <div class="header">
+        <a href="/" class="home-link"> YouTube </a>
+        client with Keno UI</div>
+    <input data-bind="value: query, source: autocompleteData" id="searchQuery" class="search-field" autofocus>
+</script>
+
+<script id="searchResultTpl" type="text/x-kendo-template">
+    <ul data-template="searchResultItemTpl" data-bind="source: searchResultItems" tabindex="-1"></ul>
+    <button data-bind="click: loadNextPageResult" class="load-more">more videos...</button>
+</script>
+
+<script id="searchResultItemTpl" type="text/x-kendo-template">
+    <li>
+        <a data-bind="attr: { href: videoRoute }" >
+            <img data-bind="attr: { src: imageSource, alt: imageAlt }" width="120" height="90">
+            <span data-bind="text: videoTitle" class="title"></span>
+            <div class="footer">
+                <span data-bind="text: videoPublishedAt" class="date"></span>
+                <span data-bind="text: videoAuthor" class="author"></span>
+            </div>
+        </a>
+    </li>
+</script>
+
+<script id="videoDetailsTpl" type="text/x-kendo-template">
+    <span data-bind="click: play" id="playVideo">
+            <img data-bind="attr: { src: imageSource, alt: imageAlt }" >
+            <button class="play-btn">
+                <svg height="25" width="20">
+                    <polygon points="0,0 20,12.5 0,25" style="fill:white;"></polygon>
+                </svg>
+            </button>
+        </span>
+    <span data-bind="text: videoTitle" class="title"></span>
+    <span data-bind="text: videoDate" class="title"></span>
+    <div class="info">
+        <p>Views: <span data-bind="text: videoViewCount"></span></p>
+        <p>published at <span data-bind="text: videoPublishedAt"></span></p>
+        <p>Author: <span data-bind="text: videoAuthor"></span></p>
+    </div>
+    <p class="description">
+        <span data-bind="text: videoDescription"></span>
+    </p>
+    <div class="comments-container">
+        <h4>leave your comment:</h4>
+            <textarea data-bind="value: userComment, events:{ keypress: addComment }"
+                      data-value-update="keypress"
+                      placeholder=" text your comment here "></textarea>
+        <span class="help-text">to add comment press ENTER</span>
+        <h4>comments:</h4>
+        <p data-bind="text: noCommentsMsg"></p>
+        <ul data-template="commentItemTpl" class="comments-list" data-bind="source: comments"></ul>
+    </div>
+
+
+</script>
+
+<script id="commentItemTpl" type="text/x-kendo-template">
+    <li>
+        <span data-bind="text: commentDateTime" class="date"></span>
+        &nbsp;&nbsp;
+        <span data-bind="text: commentText" class="text"></span>
+    </li>
+</script>
+
+<!--end templates-->
+
+<!--app scripts-->
+<script src="js/main.min.js"></script>
+
+<!--youtube API-->
+<script src="http://apis.google.com/js/client.js?onload=appInit"></script>
+
+<!--fancybox-->
+<script src="lib/fancybox/jquery.fancybox.pack.js"></script>
+
+<!--customize scrollbars-->
+<script src="lib/malihu-custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+
+</body>
+</html>
