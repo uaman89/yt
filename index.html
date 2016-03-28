@@ -27,7 +27,7 @@
     <script id="searchPanelTpl" type="text/x-kendo-template">
         <div class="header">
             <a href="/" class="home-link"> YouTube </a>
-            client with Keno UI</div>
+            client with Kendo UI</div>
         <input data-bind="value: query, source: autocompleteData" id="searchQuery" class="search-field" autofocus>
     </script>
 
@@ -73,7 +73,8 @@
             <textarea data-bind="value: userComment, events:{ keypress: addComment }"
                       data-value-update="keypress"
                       placeholder=" text your comment here "></textarea>
-            <span class="help-text">to add comment press ENTER. SHIFT+Enter for new line</span>
+            <button data-bind="click: addComment" class="add-comment-btn">add comment</button>
+            <span class="help-text">( to add comment press ENTER. SHIFT+Enter for new line )</span>
             <h4>comments:</h4>
             <p data-bind="text: noCommentsMsg"></p>
             <ul data-template="commentItemTpl" class="comments-list" data-bind="source: comments"></ul>

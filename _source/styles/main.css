@@ -205,14 +205,21 @@ body {
       outline: none;
       height: 3em;
       margin: 0;
-      box-sizing: border-box; }
+      box-sizing: border-box;
+      float: left; }
+    .video-details .comments-container .add-comment-btn {
+      height: 3em;
+      min-width: 3em;
+      border-radius: 0 7px 7px 0;
+      float: left; }
     .video-details .comments-container .help-text {
       display: block;
       margin: 5px;
       text-align: center;
       width: 480px;
       font-size: 10px;
-      color: grey; }
+      color: grey;
+      clear: both; }
     .video-details .comments-container ul {
       margin: 10px 0;
       padding: 0 0 10px 20px; }
@@ -252,5 +259,16 @@ body {
 .fancybox-close {
   top: 0;
   right: -45px; }
+
+@media screen and (max-width: 935px) {
+  #app.show-result-panel .add-comment-btn {
+    width: 480px;
+    float: none;
+    border-radius: 0 0 7px 7px; } }
+@media screen and (max-width: 625px) {
+  #app:not(.show-result-panel) .add-comment-btn {
+    width: 480px;
+    float: none;
+    border-radius: 0 0 7px 7px; } }
 
 /*# sourceMappingURL=main.css.map */

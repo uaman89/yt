@@ -309,6 +309,14 @@ $bigImgWidth: 480px;
             height: 3em;
             margin: 0;
             box-sizing: border-box;
+            float: left;
+        }
+
+        .add-comment-btn{
+            height: 3em;
+            min-width: 3em;
+            border-radius: 0 7px 7px 0;
+            float: left;
         }
 
         .help-text{
@@ -318,6 +326,7 @@ $bigImgWidth: 480px;
             width: $bigImgWidth;
             font-size: 10px;
             color: grey;
+            clear: both;
         }
 
         ul{
@@ -389,3 +398,17 @@ $bigImgWidth: 480px;
     //background: url(/lib/fancybox/fancybox_sprite.png?123423);
 }
 
+@media screen and (max-width: 935px){
+    #app.show-result-panel .add-comment-btn{
+        width: $bigImgWidth;
+        float: none;
+        border-radius: 0 0 7px 7px;
+    }
+}
+@media screen and (max-width: 625px){
+  #app:not(.show-result-panel) .add-comment-btn {
+      width: $bigImgWidth;
+      float: none;
+      border-radius: 0 0 7px 7px;
+  }
+}

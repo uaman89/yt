@@ -150,7 +150,12 @@ VideoModel = {
     comments: null,
 
     addComment: function(e){
-        if (e.keyCode == 13 && e.shiftKey === false) {
+        console.log('e',e);
+
+        var isEnterPressed = (e.keyCode == 13 && e.shiftKey === false) ? true : false;
+        var isAddBtnCliked = (e.type == 'click' && e.target.className == 'add-comment-btn') ? true : false;
+
+        if ( isEnterPressed || isAddBtnCliked ) {
 
             //handle user comment
             var comment = this.userComment;
